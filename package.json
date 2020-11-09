@@ -1,20 +1,31 @@
 {
-  "name": "base-page",
-  "version": "0.1.0",
-  "private": true,
+  "name": "base-app",
+  "version": "0.0.0",
+  "description": "A Create React App enhancement",
+  "private": false,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@material-ui/core": "~4.11.0",
+    "@material-ui/icons": "~4.9.1",
+    "@testing-library/jest-dom": "~5.11.4",
+    "@testing-library/react": "~11.1.0",
+    "@testing-library/user-event": "~12.1.10",
+    "autoprefixer": "~9.8.6",
+    "postcss-cli": "~8.2.0",
+    "react": "~17.0.1",
+    "react-dom": "~17.0.1",
+    "react-router-dom": "~5.2.0",
     "react-scripts": "4.0.0",
-    "web-vitals": "^0.2.4"
+    "serve": "~11.3.2",
+    "tailwindcss": "~1.9.6",
+    "web-vitals": "~0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start:dev": "npm run watch:css & react-scripts start",
+    "start": "serve -s build",
+    "build": "NODE_ENV=production npm run build:css && react-scripts build",
+    "build:css": "postcss src/styles/tailwind.css -o src/styles/build/index.css",
+    "watch:css": "postcss src/styles/tailwind.css -o src/styles/build/index.css -w",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
